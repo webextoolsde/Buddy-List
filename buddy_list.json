@@ -14,7 +14,23 @@
     "headless": {
       "id": "dw-headless",
       "widgets": { "comp1": { "comp": "div" } },
-      "layout": { "areas": [["comp1"]], "size": { "cols": [1], "rows": [1] } }
+      "comp2": {
+                "comp": "headless-crm-widget",
+                "script": "https://webextoolsde.github.io/Call-History/src/build/buddy-list.js",
+                "attributes": {
+                  "token": "$STORE.auth.accessToken",
+                  "avatar": "https://randomuser.me/api/portraits/med/lego/1.jpg",
+                  "orgId": "$STORE.agent.orgId",
+                  "name": "Im a property from the JSON layout",
+                  "teamId":"$STORE.agent.teamId",
+                  "darkmode": "$STORE.app.darkMode",
+                  "myOutdialEPID":"2df8d2e9-aac0-4b58-8bff-acb975c1d74c",
+                  "title":"Buddy List for my Company",
+                  "titletext":"Text for meine BuddyList",
+                  "region":"us1"
+                }
+            },
+      "layout": { "areas": [["comp1","comp2"]], "size": { "cols": [1,1], "rows": [1] } }
     },
     "panel": {
       "comp": "md-tabs",
@@ -99,6 +115,52 @@
       ]
     },
     "navigation": [
+      {
+          "nav": {
+            "label": "Buddy List",
+            "icon": "https://qaemailmedia.s3.amazonaws.com/348e2d9f-90b3-4dc7-b737-081bc8cbfcbe/7213251_3997020172948318.png",
+            "iconType": "other",
+            "navigateTo": "buddyList1",
+            "align": "top"
+          },
+          "page": {
+            "id": "buddyList1",
+            "widgets": {
+              "console": {
+                "comp": "pay-widget",
+                "script": "https://webextoolsde.github.io/Call-History/src/build/buddy-list.js",
+                "attributes": {
+                  "isDarkMode": "$STORE.app.darkMode",
+                  "agentName": "$STORE.agent.agentName",
+                  "agentEmailId": "$STORE.agent.agentEmailId",
+                  "bearerToken": "$STORE.auth.accessToken",
+                  "teamId":"$STORE.agent.teamId",
+                  "teamName":"$STORE.agent.teamName",
+                  "organizationId": "$STORE.agent.orgId"
+                },
+                "wrapper": {
+                  "title": "Buddy List",
+                  "maximizeAreaName": "app-maximize-area"
+                }
+              }
+            },
+            "layout": {
+              "areas": [
+                [
+                  "console"
+                ]
+              ],
+              "size": {
+                "cols": [
+                  1
+                ],
+                "rows": [
+                  1
+                ]
+              }
+            }
+          }
+        },
       {
         "nav": {
           "label": "Customer Experience Analytics",
